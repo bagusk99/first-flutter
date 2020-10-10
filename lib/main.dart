@@ -18,16 +18,16 @@ class MyApp extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    'Oeschinen Lake Campground',
+                    'Testing Judul',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  'Kandersteg, Switzerland',
+                  'Testing Isi',
                   style: TextStyle(
-                    color: Colors.grey[500]
+                    color: Colors.grey[400]
                   )
                 )
               ],
@@ -36,11 +36,24 @@ class MyApp extends StatelessWidget {
           //3
           Icon(
             Icons.star,
-            color: Colors.red
+            color: Colors.red[400]
           ),
-          Text('41')
+          Text('100')
         ],
       )
+    );
+
+    Color color = Theme.of(context).primaryColor;
+
+    Widget buttonSection = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColumn(color, Icons.call, 'Call'),
+          _buildButtonColumn(color, Icons.near_me, 'Route'),
+          _buildButtonColumn(color, Icons.share, 'Share'),
+        ],
+      ),
     );
 
     return MaterialApp(
@@ -51,10 +64,32 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            titleSection
+            titleSection,
+            buttonSection
           ]
         )
       ),
+    );
+  }
+
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color
+            )
+          ),
+        )
+      ],
     );
   }
 }
